@@ -1,0 +1,71 @@
+<style>
+  #filePicker {
+    text-align: left;
+    width: 95%;
+    font-size: 1em;
+    margin: auto;
+    height: 3em;
+  }
+</style>
+
+<select id="filePicker"></select>
+<div id="result"></div>
+
+<script>
+  const rootFolderId = "root"; // Please set the top folder ID here.
+  const emimeType = "*"; // In this case, all files are shown.
+  //   const emimeType = "application/pdf"; // When you use this line, you can show only files with this mimeType.
+
+  // --- When you want to run the script for the selected file, please modify this function.
+  const work = (...args) =>
+    google.script.run.withSuccessHandler(output).doSomething(...args);
+
+  function output(res) {
+    document.getElementById("result").innerHTML = res;
+  }
+  // ---
+
+  const alldata = {};
+  const getFileList = (...args) =>
+    google.script.run.withSuccessHandler(importData).getFiles(...args);
+  getFileList(rootFolderId, rootFolderId, emimeType);
+
+  document.getElementById("filePicker").addEventListener("change", function () {
+    const { value, options } = this;
+    const disp = options[options.selectedIndex].text;
+    if (disp.includes("Folder") || disp.includes("../")) {
+      while (this.lastChild) this.removeChild(this.lastChild);
+      if (alldata[value]) {
+        importData({ [value]: alldata[value] });
+        return;
+      }
+      getFileList(value, rootFolderId, emimeType);
+      return;
+    }
+    work(value);
+  });
+
+  function importData(e) {
+    const key = Object.keys(e)[0];
+    if (!alldata[key]) alldata[key] = e[key];
+    const select = document.getElementById("filePicker");
+    const obj = e[key]["keyparent"]
+      ? [
+          { text: `./${e[key]["keyname"]}`, value: key },
+          { text: "../", value: e[key]["keyparent"] },
+        ]
+      : [{ text: `./${e[key]["keyname"]}`, value: key }];
+    obj.forEach(({ text, value }) => {
+      const option = document.createElement("option");
+      option.textContent = text;
+      option.value = value;
+      select.appendChild(option);
+    });
+    e[key]["files"].forEach(({ mimeType, name, id }) => {
+      const option = document.createElement("option");
+      option.textContent = mimeType == "folder" ? "[Folder]" + name : name;
+      option.value = id;
+      select.appendChild(option);
+    });
+  }
+</script>
