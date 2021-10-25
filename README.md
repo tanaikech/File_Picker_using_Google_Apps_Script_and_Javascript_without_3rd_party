@@ -1,8 +1,18 @@
 # File Picker using Google Apps Script and Javascript without 3rd party
 
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENCE)
+
+<a name="top"></a>
+
 ![](images/fig1.gif)
 
-This is a sample script for the file picker using Google Apps Script and Javascript without 3rd party. I had created the same sample script before. [Ref](https://gist.github.com/tanaikech/96166a32e7781fee22da9e498b2289d0) But, in the case of that script, jQuery is used. And, only Google Drive of own account could be used. In this sample script, 3rd party of jQuery is not used, and also, not only Google Drive of your own account, but also Google Drive of the service account can be used. By this, I thought that this file picker will be useful for various scenes.
+# Overview
+
+This is a sample script for the file picker using Google Apps Script and Javascript without 3rd party.
+
+# Description
+
+I had created the same sample script before. [Ref](https://gist.github.com/tanaikech/96166a32e7781fee22da9e498b2289d0) But, in the case of that script, jQuery is used. And, only Google Drive of own account could be used. In this sample script, 3rd party of jQuery is not used, and also, not only Google Drive of your own account, but also Google Drive of the service account can be used. By this, I thought that this file picker will be useful for various scenes.
 
 The flow for using this sample script is as follows.
 
@@ -282,3 +292,29 @@ function main() {
   );
 }
 ```
+
+---
+
+<a name="licence"></a>
+
+# Licence
+
+[MIT](licence)
+
+<a name="author"></a>
+
+# Author
+
+[Tanaike](https://tanaikech.github.io/about/)
+
+If you have any questions and commissions for me, feel free to tell me.
+
+<a name="updatehistory"></a>
+
+# Update History
+
+- v1.0.0 (May 27, 2021)
+
+  1. Initial release.
+
+[TOP](#top)
