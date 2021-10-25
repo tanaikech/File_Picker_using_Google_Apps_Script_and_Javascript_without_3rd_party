@@ -313,7 +313,7 @@ If you have any questions and commissions for me, feel free to tell me.
 
 # Update History
 
-- v1.0.0 (May 27, 2021)
+- v1.0.0 (October 25, 2021)
 
   1. Initial release.
 
