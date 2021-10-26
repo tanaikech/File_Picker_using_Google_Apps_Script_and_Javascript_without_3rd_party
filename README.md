@@ -293,6 +293,12 @@ function main() {
 }
 ```
 
+# About scopes
+
+In this sample script, by using the comment line of `// DriveApp.getFiles()`, the scope of `https://www.googleapis.com/auth/drive.readonly` is automatically added.
+
+When you want to use the minimum required scope, you can use this script with the scopes of `https://www.googleapis.com/auth/drive.metadata.readonly` and `https://www.googleapis.com/auth/script.external_request`.
+
 ---
 
 <a name="licence"></a>
